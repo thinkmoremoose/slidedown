@@ -1,0 +1,33 @@
+:root {
+  --bg: #0b0d08;
+  --bg-slide: #1a1f12;
+  --text: #18e000;
+  --heading: #18e000;
+  --text-muted: #108000;
+  --accent: #18e000;
+  --accent-alt: #18e000;
+  --accent-green: #18e000;
+  --code-bg: #0a1107;
+  --border: #18e000;
+  --surface: #131a0d;
+  --font-main: 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  --font-mono: 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  --td: 100ms;
+  --slide-w: 1920;
+  --slide-h: 1080;
+}
+
+/* Add custom scanline effect */
+.sd-viewport::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 100;
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+}

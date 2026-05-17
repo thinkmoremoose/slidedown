@@ -1,0 +1,29 @@
+:root {
+  --bg: #000000;
+  --bg-slide: #050505;
+  --text: #00ffff;
+  --heading: #ff00ff;
+  --text-muted: #555555;
+  --accent: #ff00ff;
+  --accent-alt: #00ffff;
+  --accent-green: #00ff00;
+  --code-bg: #111111;
+  --border: #333333;
+  --surface: #0a0a0a;
+  --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  --td: 600ms;
+}
+
+/* Custom glow effects for laser show */
+.sd-deck > section h1, .sd-deck > section h2 {
+  text-shadow: 0 0 10px var(--heading), 0 0 20px var(--heading);
+}
+
+.sd-deck > section p, .sd-deck > section li {
+  text-shadow: 0 0 5px var(--text);
+}
+
+.accent {
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}

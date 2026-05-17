@@ -1,0 +1,310 @@
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font-main); }
+
+/* Suppress transitions on load */
+body:not(.ready) .sd-deck > section { transition: none !important; }
+
+/* ============================================================
+   VIEWPORT & DECK
+   ============================================================ */
+.sd-viewport {
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--bg);
+}
+.sd-deck {
+  width: 1920px; height: 1080px;
+  position: relative; flex-shrink: 0;
+  transform-origin: center center;
+}
+
+/* ============================================================
+   SLIDE BASE
+   ============================================================ */
+.sd-deck > section {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 60px 120px;
+  background: var(--bg-slide);
+  color: var(--text);
+  opacity: 0; pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.sd-deck > section.present { opacity: 1; pointer-events: auto; z-index: 2; }
+.sd-deck > section .notes { display: none; }
+
+/* ============================================================
+   TRANSITIONS
+   ============================================================ */
+/* Fade (default) */
+.sd-deck--fade > section { transition: opacity var(--td) ease; }
+
+/* Slide */
+.sd-deck--slide > section {
+  transition: opacity var(--td) ease, transform var(--td) ease;
+}
+.sd-deck--slide > section.past    { transform: translateX(-25%); }
+.sd-deck--slide > section.future  { transform: translateX(25%); }
+.sd-deck--slide > section.present { transform: translateX(0); }
+
+/* None */
+.sd-deck--none > section { transition: none; }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+.sd-deck > section h1 {
+  font-size: 72px; font-weight: 700; line-height: 1.1;
+  color: var(--heading); margin-bottom: 24px;
+}
+.sd-deck > section h1::after {
+  content: ''; display: block;
+  width: 80px; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  margin-top: 20px; border-radius: 2px;
+}
+.sd-deck > section h2 {
+  font-size: 56px; font-weight: 600; line-height: 1.2;
+  color: var(--heading); margin-bottom: 28px;
+}
+.sd-deck > section h3 {
+  font-size: 40px; font-weight: 600; color: var(--accent);
+  margin-bottom: 20px;
+}
+.sd-deck > section p {
+  font-size: 32px; line-height: 1.6; margin-bottom: 16px;
+}
+.sd-deck > section ul, .sd-deck > section ol {
+  font-size: 32px; line-height: 1.6;
+  margin-bottom: 16px; padding-left: 8px;
+  list-style: none;
+}
+.sd-deck > section ol { padding-left: 48px; list-style: decimal; }
+.sd-deck > section li { margin-bottom: 14px; }
+.sd-deck > section code {
+  background: var(--code-bg); padding: 4px 12px;
+  border-radius: 6px; font-family: var(--font-mono); font-size: 0.85em;
+  border: 1px solid var(--border);
+}
+.sd-deck > section pre {
+  background: var(--code-bg); padding: 28px; border-radius: 10px;
+  overflow-x: auto; border: 1px solid var(--border); margin: 16px 0;
+}
+.sd-deck > section pre code {
+  background: none; padding: 0; border: none; font-size: 26px;
+  line-height: 1.5;
+}
+.sd-deck > section blockquote {
+  border-left: 4px solid var(--accent); padding: 8px 24px;
+  margin: 20px 0; font-style: italic; color: var(--text-muted);
+  font-size: 32px;
+}
+.sd-deck > section strong { font-weight: 700; color: var(--heading); }
+.sd-deck > section em { font-style: italic; }
+
+/* ============================================================
+   CONTENT HELPERS
+   ============================================================ */
+.accent     { color: var(--accent) !important; }
+.accent-alt { color: var(--accent-alt) !important; }
+.green      { color: var(--accent-green) !important; }
+.muted      { color: var(--text-muted) !important; }
+.subtitle   { font-size: 30px !important; color: var(--text-muted); margin-top: 8px; }
+.meta       { font-size: 22px !important; color: var(--text-muted); margin-top: 32px; }
+.callout {
+  font-size: 34px; margin-top: 28px; padding: 24px 28px;
+  border-left: 4px solid var(--accent-alt);
+  background: rgba(243, 139, 168, 0.06); border-radius: 0 8px 8px 0;
+}
+.two-col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: start; width: 100%;
+}
+.compare-item {
+  background: var(--surface); padding: 28px; border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+/* Special slide layouts */
+.sd-deck > section.title-slide {
+  text-align: center; align-items: center;
+}
+.sd-deck > section.title-slide h1 {
+  font-size: 84px;
+}
+.sd-deck > section.title-slide h1::after {
+  margin: 20px auto 0;
+}
+.sd-deck > section.impact-slide {
+  text-align: center; align-items: center;
+}
+.sd-deck > section.impact-slide h2 {
+  font-size: 64px; line-height: 1.4;
+}
+.sd-deck > section.impact-slide h2::after {
+  content: ''; display: block; width: 80px; height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  margin: 24px auto 0; border-radius: 2px;
+}
+
+/* ============================================================
+   FRAGMENTS
+   ============================================================ */
+.fragment {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.fragment.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ============================================================
+   PROGRESS BAR & COUNTER
+   ============================================================ */
+.sd-counter {
+  position: fixed; bottom: 24px; right: 32px; z-index: 10;
+  font-size: 15px; color: var(--text-muted); font-family: var(--font-mono);
+  pointer-events: none; user-select: none;
+}
+.sd-bar {
+  position: fixed; bottom: 0; left: 0; width: 100%; height: 3px;
+  background: var(--border); z-index: 10;
+}
+.sd-bar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  transition: width var(--td) ease;
+}
+
+/* ============================================================
+   FULLSCREEN / START BUTTON
+   ============================================================ */
+.sd-start-btn {
+  display: inline-block; margin-top: 36px; padding: 16px 36px;
+  background: var(--accent); color: var(--bg); border: none;
+  border-radius: 10px; font-size: 22px; font-weight: 600;
+  cursor: pointer; font-family: var(--font-main);
+  transition: background 200ms, transform 200ms;
+}
+.sd-start-btn:hover { background: #a8c8ff; transform: scale(1.03); }
+
+/* ============================================================
+   OVERVIEW MODE
+   ============================================================ */
+.sd-overview {
+  display: none; position: fixed; inset: 0;
+  background: var(--bg); z-index: 50;
+  padding: 40px; overflow-y: auto;
+}
+.sd-overview.active {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px; align-content: start;
+}
+.sd-ov-thumb {
+  aspect-ratio: 16/9; background: var(--bg-slide);
+  border: 2px solid var(--border); border-radius: 8px;
+  overflow: hidden; cursor: pointer; position: relative;
+  transition: border-color 200ms, box-shadow 200ms;
+}
+.sd-ov-thumb:hover { border-color: var(--accent); }
+.sd-ov-thumb.current { border-color: var(--accent); }
+.sd-ov-thumb.focused {
+  box-shadow: 0 0 0 3px var(--accent);
+  border-color: var(--accent);
+}
+.sd-ov-inner {
+  width: 1920px; height: 1080px;
+  transform-origin: top left;
+  padding: 60px 120px;
+  display: flex; flex-direction: column; justify-content: center;
+  pointer-events: none; color: var(--text); font-family: var(--font-main);
+  background: var(--bg-slide);
+}
+.sd-ov-inner h1 { font-size: 72px; font-weight: 700; color: var(--heading); margin-bottom: 16px; line-height: 1.1; }
+.sd-ov-inner h2 { font-size: 56px; font-weight: 600; color: var(--heading); margin-bottom: 16px; line-height: 1.2; }
+.sd-ov-inner h3 { font-size: 40px; color: var(--accent); margin-bottom: 12px; }
+.sd-ov-inner p  { font-size: 32px; line-height: 1.5; margin-bottom: 12px; }
+.sd-ov-inner ul { font-size: 32px; list-style: none; padding-left: 8px; }
+.sd-ov-inner li { margin-bottom: 8px; }
+.sd-ov-inner .fragment { opacity: 1; transform: none; }
+.sd-ov-inner .title-slide, .sd-ov-inner .impact-slide { text-align: center; }
+.sd-ov-inner .subtitle { font-size: 26px; color: var(--text-muted); }
+.sd-ov-inner .accent { color: var(--accent); }
+.sd-ov-inner .accent-alt { color: var(--accent-alt); }
+.sd-ov-inner .callout { font-size: 28px; padding: 16px; border-left: 4px solid var(--accent-alt); margin-top: 16px; }
+.sd-ov-num {
+  position: absolute; bottom: 8px; right: 12px;
+  font-size: 14px; color: var(--text-muted); font-family: var(--font-mono);
+  background: rgba(15,17,26,0.7); padding: 2px 8px; border-radius: 4px;
+}
+
+/* ============================================================
+   HELP OVERLAY
+   ============================================================ */
+.sd-help {
+  display: none; position: fixed; inset: 0;
+  background: rgba(15,17,26,0.85); z-index: 60;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.sd-help.active { display: flex; }
+.sd-help-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 48px 56px; max-width: 680px; width: 90%;
+  max-height: 85vh; overflow-y: auto;
+}
+.sd-help-card h2 { font-size: 32px; color: var(--heading); margin-bottom: 28px; }
+.sd-help-card table { width: 100%; border-collapse: collapse; }
+.sd-help-card td {
+  padding: 8px 0; font-size: 18px; color: var(--text);
+  vertical-align: top;
+}
+.sd-help-card td:first-child {
+  font-family: var(--font-mono); color: var(--accent);
+  white-space: nowrap; padding-right: 28px; width: 45%;
+}
+.sd-help-card tr.section-label td {
+  padding-top: 24px; font-weight: 600; color: var(--text-muted);
+  font-size: 15px; text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ============================================================
+   PRINT STYLESHEET
+   ============================================================ */
+@media print {
+  @page { size: landscape; margin: 0; }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+  body, html { overflow: visible !important; height: auto !important; }
+  body:not(.ready) .sd-deck > section { transition: none !important; }
+  .sd-viewport { display: block !important; width: auto; height: auto; overflow: visible; }
+  .sd-deck {
+    display: block !important; width: auto !important; height: auto !important;
+    transform: none !important; position: static !important;
+  }
+  .sd-deck > section {
+    position: relative !important;
+    opacity: 1 !important; visibility: visible !important;
+    transform: none !important; pointer-events: auto !important;
+    display: flex !important; flex-direction: column; justify-content: center;
+    width: 100vw; height: 100vh;
+    padding: 60px 100px;
+    page-break-after: always; break-after: page;
+    background: var(--bg-slide) !important;
+    z-index: auto !important;
+  }
+  .sd-deck > section:last-child { page-break-after: avoid; break-after: avoid; }
+  .sd-deck > section .fragment {
+    opacity: 1 !important; visibility: visible !important;
+    transform: none !important;
+  }
+  .sd-deck > section .notes { display: none !important; }
+  .sd-counter, .sd-bar, .sd-start-btn, .sd-help, .sd-overview { display: none !important; }
+}

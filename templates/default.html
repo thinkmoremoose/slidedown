@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{{TITLE}}</title>
+<style>
+{{THEME_VARIABLES}}
+{{BASE_STYLES}}
+{{CUSTOM_STYLES}}
+</style>
+<noscript><style>
+  body { overflow: auto; }
+  .sd-viewport { display: block; height: auto; }
+  .sd-deck { display: block; width: 100%; max-width: 960px; margin: 0 auto;
+    height: auto; transform: none; }
+  .sd-deck > section { position: relative; opacity: 1; pointer-events: auto;
+    margin-bottom: 32px; padding: 48px; border-radius: 12px;
+    font-size: 18px; z-index: auto; }
+  .sd-deck > section h1 { font-size: 42px; }
+  .sd-deck > section h2 { font-size: 32px; }
+  .sd-deck > section p, .sd-deck > section li { font-size: 18px; }
+  .fragment { opacity: 1 !important; transform: none !important; }
+  .sd-deck > section .notes { display: block; background: var(--surface);
+    padding: 16px; margin-top: 16px; border-radius: 8px; font-style: italic;
+    font-size: 16px; color: var(--text-muted); }
+  .sd-counter, .sd-bar { display: none; }
+</style></noscript>
+</head>
+<body>
+
+<div class="sd-viewport" id="viewport">
+  <div class="sd-deck" id="deck">
+{{SLIDES}}
+  </div>
+  <div class="sd-counter" id="counter"></div>
+  <div class="sd-bar"><div class="sd-bar-fill" id="barFill"></div></div>
+</div>
+
+<div class="sd-overview" id="overview"></div>
+
+<div class="sd-help" id="help">
+  <div class="sd-help-card">
+    <h2>Keyboard Shortcuts</h2>
+    <table>
+      <tr class="section-label"><td colspan="2">Navigation</td></tr>
+      <tr><td>→  ↓  Space  PgDn</td><td>Next slide / fragment</td></tr>
+      <tr><td>←  ↑  PgUp</td><td>Previous slide / fragment</td></tr>
+      <tr><td>Home</td><td>First slide</td></tr>
+      <tr><td>End</td><td>Last slide</td></tr>
+      <tr><td>1–9 + Enter</td><td>Jump to slide number</td></tr>
+      <tr class="section-label"><td colspan="2">Modes</td></tr>
+      <tr><td>F</td><td>Toggle fullscreen</td></tr>
+      <tr><td>S</td><td>Open presenter view</td></tr>
+      <tr><td>O  G</td><td>Toggle slide overview</td></tr>
+      <tr><td>?  H</td><td>Toggle this help</td></tr>
+      <tr><td>Esc</td><td>Close overlay</td></tr>
+      <tr class="section-label"><td colspan="2">Export</td></tr>
+      <tr><td>Ctrl + P</td><td>Print / Export to PDF</td></tr>
+      <tr class="section-label"><td colspan="2">Touch</td></tr>
+      <tr><td>Swipe left</td><td>Next slide</td></tr>
+      <tr><td>Swipe right</td><td>Previous slide</td></tr>
+      <tr><td>Tap right third</td><td>Next slide</td></tr>
+      <tr><td>Tap left third</td><td>Previous slide</td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+{{ENGINE_JS}}
+</script>
+</body>
+</html>
