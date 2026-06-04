@@ -1,0 +1,17 @@
+{
+  "title": "Build the App, Not the Adapter",
+  "theme": "laser-show",
+  "output": "poc_laser_show.html",
+  "slides": [
+    { "file": "01-title.html" },
+    { "file": "02-status.md" },
+    { "file": "03-abstraction-tax.md" },
+    { "file": "04-needs.md" },
+    { "file": "05-alternative.md" },
+    { "file": "06-zero-dependencies.md" },
+    { "file": "07-total-control.md" },
+    { "file": "08-composability.md" },
+    { "file": "09-objections.md" },
+    { "file": "10-conclusion.md" }
+  ]
+}

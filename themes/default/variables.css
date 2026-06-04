@@ -1,0 +1,18 @@
+:root {
+  --bg: #0f111a;
+  --bg-slide: #1a1d2e;
+  --text: #cdd6f4;
+  --heading: #ffffff;
+  --text-muted: #6c7086;
+  --accent: #89b4fa;
+  --accent-alt: #f38ba8;
+  --accent-green: #a6e3a1;
+  --code-bg: #141622;
+  --border: #313244;
+  --surface: #1e2030;
+  --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  --td: 400ms;
+  --slide-w: 1920;
+  --slide-h: 1080;
+}
