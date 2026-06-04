@@ -15,9 +15,10 @@ class SimpleMarkdown:
         text = re.sub(r'^## (.*)$', r'<h2>\1</h2>', text, flags=re.M)
         text = re.sub(r'^### (.*)$', r'<h3>\1</h3>', text, flags=re.M)
         
-        # Lists
+        # Lists — wrap consecutive <li> items in <ul>
         text = re.sub(r'^\* (.*)$', r'<li>\1</li>', text, flags=re.M)
         text = re.sub(r'^- (.*)$', r'<li>\1</li>', text, flags=re.M)
+        text = re.sub(r'((?:<li>.*?</li>\n?)+)', r'<ul>\n\1</ul>\n', text, flags=re.S)
         
         # Bold / Italic
         text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
