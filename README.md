@@ -50,7 +50,19 @@ Navigation in either window stays synchronized.
 
 All fragments are fully revealed in the PDF. Speaker notes are excluded.
 
-## Editing Slides
+## Advanced Templating
+
+For managing larger decks, use the built-in templating system:
+
+1. Configure your deck in `deck.json`.
+2. Add slides as Markdown or HTML files in the `slides/` directory.
+3. Build the deck:
+   ```bash
+   ./deck_tool.py build --config deck.json
+   ```
+This approach allows separating slide content, using Markdown, and managing complex layouts and themes more effectively than editing HTML directly.
+
+## Editing Slides (Manual)
 
 Slides are `<section>` elements inside `<div class="sd-deck">`. To add a slide:
 
